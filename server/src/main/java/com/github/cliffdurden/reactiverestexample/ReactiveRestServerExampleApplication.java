@@ -14,10 +14,10 @@ import java.util.stream.Stream;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @SpringBootApplication
-public class ReactiveRestExampleApplication {
+public class ReactiveRestServerExampleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ReactiveRestExampleApplication.class, args);
+        SpringApplication.run(ReactiveRestServerExampleApplication.class, args);
     }
 
     @Bean
