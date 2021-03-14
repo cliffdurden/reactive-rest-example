@@ -1,4 +1,4 @@
-# Run and try
+# Run ReactiveRestServerExampleApplication and try
 One value
 ```bash
 curl -N localhost:8080/hello/Haruki
