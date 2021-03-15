@@ -1,7 +1,6 @@
 package com.github.cliffdurden.reactiverestexample;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import com.github.tomakehurst.wiremock.client.WireMock;
 import groovy.util.logging.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.*;
 import reactor.core.publisher.*;
 import reactor.test.StepVerifier;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -33,9 +34,9 @@ class ReactiveRestClientExampleApplicationTest {
     @DisplayName("Should return correct single result from server")
     @Test
     void testGreet() {
-        wireMockServer.stubFor(WireMock.get(WireMock.urlEqualTo("/hello/testName"))
+        wireMockServer.stubFor(get(urlEqualTo("/hello/testName"))
                 .willReturn(
-                        WireMock.aResponse()
+                        aResponse()
                                 .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE)
                                 .withBody("Hi, testName.")
                                 .withStatus(HttpStatus.OK)
@@ -60,9 +61,9 @@ class ReactiveRestClientExampleApplicationTest {
                 Hi, testName. 3
                 """;
 
-        wireMockServer.stubFor(WireMock.get(WireMock.urlEqualTo("/hello_many/testName"))
+        wireMockServer.stubFor(get(urlEqualTo("/hello_many/testName"))
                 .willReturn(
-                        WireMock.aResponse()
+                        aResponse()
                                 .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE)
                                 .withBody(eventStream)
                                 .withStatus(HttpStatus.OK)
