@@ -18,10 +18,10 @@ import static org.mockito.BDDMockito.given;
 class ReactiveRestServerExampleApplicationTests {
 
     @Autowired
-    WebTestClient webTestClient;
+    private WebTestClient webTestClient;
 
     @MockBean
-    GreetingService dummyGreetingService;
+    private GreetingService dummyGreetingService;
 
     @BeforeEach
     public void setUp() {
@@ -32,7 +32,7 @@ class ReactiveRestServerExampleApplicationTests {
                 .willReturn(Flux.just(
                         "Hi, testName. 1",
                         "Hi, testName. 2",
-                        "Hi, testName. 2"));
+                        "Hi, testName. 3"));
     }
 
     @DisplayName("Should return one correct value")
@@ -60,7 +60,7 @@ class ReactiveRestServerExampleApplicationTests {
         StepVerifier.create(results.log())
                 .expectNext("Hi, testName. 1")
                 .expectNext("Hi, testName. 2")
-                .expectNext("Hi, testName. 2")
+                .expectNext("Hi, testName. 3")
                 .expectComplete()
                 .verify();
     }
